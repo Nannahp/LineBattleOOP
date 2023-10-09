@@ -20,7 +20,7 @@ public Bomb(){
     return detonated;
     }
     public void setPlaced(boolean placed) {
-        isPlaced = placed;
+        this.isPlaced = placed;
     }
     public boolean getIfPlaced(){
     return isPlaced;

@@ -62,8 +62,8 @@ public class Troop {
         return scout;
     }
 
-    public void moveForward(Die dice) {
-        int roll = (dice.rollDice() % 2 == 0) ? 2 : 1; //number of fields determined by even or odd roll
+    public void moveForward(int roll) {
+        roll = (roll % 2 == 0) ? 2 : 1; //number of fields determined by even or odd roll
         switch (playerId) {
             case PLAYER -> {
                 setPosition(-roll);
@@ -76,9 +76,8 @@ public class Troop {
         }
     }
 
-    public void moveBack(Die dice) {
-        int roll=0;
-        switch (dice.rollDice()){
+    public void moveBack(int roll) {
+        switch (roll){
             case 1,2 -> roll =1;
             case 3,4 -> roll =2;
             case 5,6 -> roll =3;
@@ -103,8 +102,7 @@ public class Troop {
         }
     }
 
-    public void attack(Die dice, Troop adversary){
-        int roll = dice.rollDice();
+    public void attack(int roll, Troop adversary){
         if ((this.firePower-(roll*100)) >=0){ //Can only attack if firepower is sufficient.
             UI.printString(("ATTACK!"));
             int enemySoldiers = adversary.getSoldiers();

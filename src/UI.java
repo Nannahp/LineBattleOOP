@@ -10,11 +10,6 @@ public class UI {
         return scanner.nextLine();
     }
 
-    public static void showWelcome(){
-        System.out.println();
-        System.out.println("WELCOME TO LINE-BATTLE! PREPARE YOUR TROOPS!");
-        System.out.println();
-    }
 
 
 

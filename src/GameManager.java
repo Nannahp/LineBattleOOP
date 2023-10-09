@@ -13,16 +13,18 @@ public class GameManager {
     public void initializeGame(){
         this.player = new Troop(PlayerId.PLAYER);
         this.enemy = new Troop(PlayerId.ENEMY);
-        UI.showWelcome();
-        player.moveForward(dice);
-        enemy.moveForward(dice);
+        UI.printString("");
+        UI.printString("WELCOME TO LINE-BATTLE! PREPARE YOUR TROOPS!");
+        UI.printString("");
+        player.moveForward(dice.rollDice());
+        enemy.moveForward(dice.rollDice());
         currentPlayer = player;
 
     }
     // Runs game with a while-loop
     public void playGame(){
         while (!checkWin()) {
-            //Battlefield.showBattlefield(player, enemy); Shows positions, mostly for testing
+            Battlefield.showBattlefield(player, enemy); //Shows positions, mostly for testing
             UI.printString("\n"+currentPlayer.getPlayerId() + "'S TURN");
                 String move = initializeMove();
                 makeMove(move, currentPlayer);
@@ -42,9 +44,9 @@ public class GameManager {
     public void makeMove(String move, Troop troop) {
         Troop adversary = (troop.getPlayerId() == PlayerId.PLAYER) ? enemy : player;
         switch (move.toLowerCase()) {
-            case "f" -> troop.moveForward(dice);
-            case "a" -> troop.attack(dice,adversary);
-            case "r" -> troop.moveBack(dice);
+            case "f" -> troop.moveForward(dice.rollDice());
+            case "a" -> troop.attack(dice.rollDice(),adversary);
+            case "r" -> troop.moveBack(dice.rollDice());
             case "b" -> troop.getBomb().placeBomb(troop);
             case "d" -> troop.getBomb().detonateBomb(troop, adversary);
             case "s" -> showStats();
